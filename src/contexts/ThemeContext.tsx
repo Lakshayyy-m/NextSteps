@@ -27,10 +27,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (mounted) {
       localStorage.setItem('theme', theme);
-    // Apply theme to document by adding/removing the theme class
-    const root = document.documentElement;
-    root.classList.remove('light', 'dark');
-    root.classList.add(theme);
+      // Apply theme to document by adding/removing the theme class
+      const root = document.documentElement;
+      root.classList.remove('light', 'dark');
+      root.classList.add(theme);
     }
   }, [theme, mounted]);
 
@@ -38,6 +38,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     console.log('toggleTheme');
     setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
+
+  // Prevent hydration mismatch by not rendering theme-dependent content until mounted
+  if (!mounted) {
+    return (
+      <ThemeContext.Provider value={{ theme: 'light', toggleTheme }}>
+        {children}
+      </ThemeContext.Provider>
+    );
+  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>

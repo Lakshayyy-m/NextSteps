@@ -1,10 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import '@uppy/core/css/style.min.css';
+@import '@uppy/dashboard/css/style.min.css';
 
 @custom-variant dark (&:is(.dark *));
 
-*{
-  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+html{
+  height: 100%;
 }
 
 /* Light theme variables in :root (default) */
@@ -131,14 +133,17 @@
 }
 
 @layer utilities {
-  .font-main {
+  .font-logo {
     font-family: var(--font-noto-serif-hebrew);
   }
-  .font-hero-main{
+  .font-main {
+    font-family: var(--font-liter, 'sans serif');
+  }
+  .font-hero-main {
     font-family: var(--font-bebas-neue);
   }
 
   .font-hero-instrumentSerif {
-    font-family: var(--font-instrument-serif)
+    font-family: var(--font-instrument-serif);
   }
 }

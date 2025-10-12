@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Noto_Serif_Hebrew,Bebas_Neue } from "next/font/google";
+import { Instrument_Serif, Noto_Serif_Hebrew,Bebas_Neue, Liter } from "next/font/google";
 import "./globals.css";
-import { ClientThemeProvider } from "./providers/ClientThemeProvider";
+import { ClientThemeProvider } from "../providers/ClientThemeProvider";
+import Navbar from "@/components/Navbar";
+import { Toaster } from "@/components/ui/sonner"
 
 const notoSerifHebrew = Noto_Serif_Hebrew({
   variable: "--font-noto-serif-hebrew",
@@ -20,6 +22,13 @@ const instrumentSerif = Instrument_Serif({
   weight:["400"]
 })
 
+const liter = Liter({
+  variable: "--font-liter",
+  subsets:["latin"],
+  weight: ["400"]
+})
+
+
 export const metadata: Metadata = {
   title: "Next Steps",
   description: "Next Steps",
@@ -33,11 +42,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${instrumentSerif.variable} ${notoSerifHebrew.variable} ${bebasNeue.variable} antialiased`}
+        className={`${instrumentSerif.variable} ${notoSerifHebrew.variable} ${bebasNeue.variable} ${liter.variable} antialiased transition-colors duration-300 h-full`}
       >
         <ClientThemeProvider>
+        <Navbar />
           {children}
         </ClientThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
