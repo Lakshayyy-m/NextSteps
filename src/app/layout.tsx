@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, Noto_Serif_Hebrew,Bebas_Neue, Liter } from "next/font/google";
 import "./globals.css";
+import "@uppy/core/css/style.min.css";
+import "@uppy/dashboard/css/style.min.css";
 import { ClientThemeProvider } from "../providers/ClientThemeProvider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner"

@@ -3,8 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import Uppy from "@uppy/core";
 import Tus from "@uppy/tus";
 import Dashboard from "@uppy/dashboard";
-import "@uppy/core/css/style.min.css";
-import "@uppy/dashboard/css/style.min.css";
 import { toast } from "sonner";
 
 /**
@@ -18,6 +16,7 @@ export const useUppyWithSupabase = ({ bucketName }: { bucketName: string }) => {
     const [uppy] = useState(() => new Uppy({
         restrictions: {
             maxNumberOfFiles: 1, // Allow only one file at a time
+            allowedFileTypes: ['.pdf'], // Only allow PDF files
         }
     }));
     
@@ -71,7 +70,11 @@ export const useUppyWithSupabase = ({ bucketName }: { bucketName: string }) => {
                 id: 'Dashboard', // Explicitly set the plugin ID
                 inline: true,
                 target: "#drag-drop-area",
-                hideProgressDetails: false
+                hideProgressDetails: false,
+                proudlyDisplayPoweredByUppy: false,
+                height: 400,
+                width: '100%',
+                note: 'Upload your book files'
             });
 
             // Add event handlers after plugins are initialized
